@@ -1,13 +1,13 @@
 "use strict";
 
-const db = require("../db");
+const db = require("../db.js");
 const bcrypt = require("bcrypt");
-const { sqlForPartialUpdate } = require("../helpers/sql");
+const { sqlForPartialUpdate } = require("../helpers/sql.js");
 const {
   NotFoundError,
   BadRequestError,
   UnauthorizedError,
-} = require("../expressError");
+} = require("../expressError.js");
 
 const { BCRYPT_WORK_FACTOR } = require("../config.js");
 const app = require("../app.js");
@@ -245,7 +245,7 @@ class User {
       throw new BadRequestError(`Already applied to job: ${jobId}`);
     }
 
-    const result = await db.query(
+    await db.query(
       `INSERT INTO applications
     (username,
     job_id)

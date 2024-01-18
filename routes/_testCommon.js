@@ -1,10 +1,10 @@
 "use strict";
 
 const db = require("../db.js");
-const User = require("../models/user");
-const Company = require("../models/company");
-const Job = require("../models/job");
-const { createToken } = require("../helpers/tokens");
+const User = require("../models/user.js");
+const Company = require("../models/company.js");
+const Job = require("../models/job.js");
+const { createToken } = require("../helpers/tokens.js");
 
 
 async function commonBeforeAll() {

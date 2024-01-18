@@ -136,9 +136,8 @@ router.delete("/:username", ensureLoggedIn, async function (req, res, next) {
 */
 router.post("/:username/jobs/:id", ensureLoggedIn, async function (req, res, next) {
   try {
-    const thisUser = await User.get(req.params.username);
     let reqUser = res.locals.user;
-    if (thisUser.username !== reqUser.username && !reqUser.isAdmin)
+    if (res.locals.user.username !== req.params.username && !reqUser.isAdmin)
       throw new UnauthorizedError();
 
     await User.apply(req.params.username, req.params.id);

@@ -3,8 +3,8 @@
 const request = require("supertest");
 
 const db = require("../db.js");
-const app = require("../app");
-const User = require("../models/user");
+const app = require("../app.js");
+const User = require("../models/user.js");
 
 const {
   commonBeforeAll,
@@ -13,7 +13,7 @@ const {
   commonAfterAll,
   u1Token,
   adminToken
-} = require("./_testCommon");
+} = require("./_testCommon.js");
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);
@@ -402,7 +402,7 @@ describe("APPLY /users/:username/jobs:id", function () {
   test("not found if user missing", async function () {
     const resp = await request(app)
       .post(`/users/nope/jobs/3`)
-      .set("authorization", `Bearer ${u1Token}`);
+      .set("authorization", `Bearer ${adminToken}`);
     expect(resp.statusCode).toEqual(404);
   });
 })
